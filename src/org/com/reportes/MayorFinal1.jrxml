@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f54c44f1-9316-43c9-bacd-76edaf3cc73f">
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     asientocontable."id" AS asientocontable_id,
+     asientocontable."descripcion" AS asientocontable_descripcion,
+     asientocontable."fecha" AS asientocontable_fecha,
+     asientocontable."numerodoc" AS asientocontable_numerodoc,
+     asientocontable."secuencia" AS asientocontable_secuencia,
+     asientocontable."tipodocumento" AS asientocontable_tipodocumento,
+     asientocontable."diario_id" AS asientocontable_diario_id,
+     transaccion."id" AS transaccion_id,
+     transaccion."debe" AS transaccion_debe,
+     transaccion."haber" AS transaccion_haber,
+     transaccion."asientocontable_id" AS transaccion_asientocontable_id,
+     transaccion."cuenta_id" AS transaccion_cuenta_id,
+     plandecuentas."id" AS plandecuentas_id,
+     plandecuentas."codigocuenta" AS plandecuentas_codigocuenta,
+     plandecuentas."descripcioncuenta" AS plandecuentas_descripcioncuenta,
+     plandecuentas."nivel" AS plandecuentas_nivel,
+     plandecuentas."padre_id" AS plandecuentas_padre_id
+FROM
+     "public"."asientocontable" asientocontable INNER JOIN "public"."transaccion" transaccion ON asientocontable."id" = transaccion."asientocontable_id"
+     INNER JOIN "public"."plandecuentas" plandecuentas ON transaccion."cuenta_id" = plandecuentas."id"]]>
+	</queryString>
+	<field name="asientocontable_descripcion" class="java.lang.String"/>
+	<field name="asientocontable_fecha" class="java.sql.Date"/>
+	<field name="asientocontable_numerodoc" class="java.lang.String"/>
+	<field name="asientocontable_secuencia" class="java.lang.String"/>
+	<field name="asientocontable_tipodocumento" class="java.lang.Integer"/>
+	<field name="transaccion_id" class="java.lang.Long"/>
+	<field name="transaccion_debe" class="java.lang.Double"/>
+	<field name="transaccion_haber" class="java.lang.Double"/>
+	<field name="transaccion_asientocontable_id" class="java.lang.Long"/>
+	<field name="transaccion_cuenta_id" class="java.lang.Long"/>
+	<field name="plandecuentas_id" class="java.lang.Long"/>
+	<field name="plandecuentas_codigocuenta" class="java.lang.String"/>
+	<field name="plandecuentas_descripcioncuenta" class="java.lang.String"/>
+	<field name="plandecuentas_nivel" class="java.lang.Integer"/>
+	<field name="plandecuentas_padre_id" class="java.lang.Long"/>
+	<field name="asientocontable_id" class="java.lang.Long"/>
+	<group name="plandecuentas_descripcioncuenta">
+		<groupExpression><![CDATA[$F{plandecuentas_descripcioncuenta}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="4ba5f017-7d4a-482f-bc4f-a22048e24613"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[plandecuentas_descripcioncuenta]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="b63d34fd-2da5-4b3d-ac47-f5769f6d10b3"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{plandecuentas_descripcioncuenta}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="14589a7c-1175-4cd6-b307-6101e3e3b522"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="a790188e-76ac-41f9-b151-99d451a8a437"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="5c8236b8-420b-4eae-9397-d417b3d162a7"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TITLE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="5ccc7fb0-c630-46e3-aca2-d5dac7d63ba8"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Add a description here]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="a03a21f0-cff5-4d26-af55-b3bc8dd259a5"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ea93640f-cae7-4fa2-ad94-fc6ccc2be8d7"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[asientocontable_descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="37" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="1a4f42aa-fa29-4ca4-9b11-b49b5b94eda8"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[asientocontable_fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="74" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4124bda4-1e05-4090-9df5-34661f2a0a2e"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[asientocontable_numerodoc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="111" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7a0a3674-b42a-4bec-8263-92536575b6b5"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[asientocontable_secuencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="148" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="af1f6622-2e2c-4e3a-8395-c76519d0d577"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[asientocontable_tipodocumento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="185" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0aa0e2de-5136-41d7-9c10-8117cf1e1740"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[transaccion_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="222" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="551781bc-fb53-4595-8b19-dd74693ea4f2"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[transaccion_debe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="259" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c2b1fce6-1e2d-4ad8-8bf3-dd9432cc651d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[transaccion_haber]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="296" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="3fcdda16-83bf-4671-bbf4-63c0e3714904"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[transaccion_asientocontable_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="333" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a9084606-460e-44bb-afc6-98ace08b24c2"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[transaccion_cuenta_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="370" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="02bc6360-f369-4b91-a123-3e85da495b45"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[plandecuentas_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="407" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="fe3e420d-4c70-4d9f-8770-01fbb940d13b"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[plandecuentas_codigocuenta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="444" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5f62537c-9b0a-424d-990f-0e19d11d119f"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[plandecuentas_nivel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="481" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="877e976b-2597-4766-b781-2931c950c63f"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[plandecuentas_padre_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="518" y="0" width="37" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c16c8b49-f1e1-42c1-a711-eb4499d5317e"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[asientocontable_id]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="f716e9bf-81e7-497c-a486-91dcbde65bc7"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="37" height="20" uuid="2eab677e-419a-402d-8caa-a112dea25784"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asientocontable_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="37" y="0" width="37" height="20" uuid="bd0ce5a3-3d76-4971-88f0-75b0b638dee0"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asientocontable_fecha}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="74" y="0" width="37" height="20" uuid="2e94cc40-6ef5-44df-8b2a-aa3648882fa6"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asientocontable_numerodoc}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="111" y="0" width="37" height="20" uuid="8810ce11-a30f-4887-a544-2a61e9e6044b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asientocontable_secuencia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="148" y="0" width="37" height="20" uuid="593f45d1-d919-4e6c-a263-f450f6b5e676"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asientocontable_tipodocumento}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="185" y="0" width="37" height="20" uuid="746518f4-1c2e-4993-8650-64e1c7c5af5c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaccion_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="222" y="0" width="37" height="20" uuid="f81762bc-9b34-4d64-a893-21a85f1fbc82"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaccion_debe}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="259" y="0" width="37" height="20" uuid="35717aac-a981-4a85-b3a9-8c36b2462a32"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaccion_haber}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="296" y="0" width="37" height="20" uuid="8d378263-91ad-4fdd-a090-fd68d0437196"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaccion_asientocontable_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="333" y="0" width="37" height="20" uuid="431e984a-7342-4d09-bd29-408e769f69d1"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaccion_cuenta_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="370" y="0" width="37" height="20" uuid="510bcb92-768b-48cb-a8ca-8fe16aa5e11e"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{plandecuentas_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="407" y="0" width="37" height="20" uuid="02765eac-235e-428d-9e8b-a1a9dd40bf61"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{plandecuentas_codigocuenta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="444" y="0" width="37" height="20" uuid="898d48ad-28f8-42e6-b07a-212780e49615"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{plandecuentas_nivel}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="481" y="0" width="37" height="20" uuid="841ac000-0968-4686-83a9-02c393e6a5fb"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{plandecuentas_padre_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="518" y="0" width="37" height="20" uuid="eb3450d6-4d1e-4888-a90f-586bdd5e97c0"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asientocontable_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="014d445c-c316-44b5-85ef-c6fe33c051dc"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="6a3a061a-ed14-4e0c-a28a-6998342699d0"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="bef22e9e-a94e-42fb-ac65-38b75bcc9f46"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="284eead8-c89d-4ca1-82f8-22c6dd4100f5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\lrvera\\Documents\\NetBeansProjects\\Contabilidad\\src\\org\\com\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     plandecuentas."id" AS plandecuentas_id,
+     plandecuentas."codigocuenta" AS plandecuentas_codigocuenta,
+     plandecuentas."descripcioncuenta" AS plandecuentas_descripcioncuenta,
+     plandecuentas."nivel" AS plandecuentas_nivel,
+     plandecuentas."padre_id" AS plandecuentas_padre_id
+FROM
+     "public"."plandecuentas" plandecuentas
+WHERE
+     nivel = 5]]>
+	</queryString>
+	<field name="plandecuentas_id" class="java.lang.Long"/>
+	<field name="plandecuentas_descripcioncuenta" class="java.lang.String"/>
+	<group name="plandecuentas_descripcioncuenta">
+		<groupExpression><![CDATA[$F{plandecuentas_descripcioncuenta}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<textField>
+					<reportElement mode="Opaque" x="0" y="0" width="555" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="0fec1b1b-e0f3-4d2a-ada2-b3c400aeae76"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{plandecuentas_descripcioncuenta}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="f192f4a5-c5da-449a-8716-681113899593"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="82ff38d6-ee2c-4016-b37e-16bdeddd66bc"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="a2dba18a-cd06-4dad-96b3-bf3e56f1cff2"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[REPORTE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="4a53d3c3-9335-4d22-9eb1-9af264e26ab6"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MAYOR GENERAL]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="8887ab80-7dcf-4d07-9c50-4e5f832baa0a"/>
+			</line>
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="19" uuid="9c768d81-215c-4be9-b51d-6b7feaa95de8"/>
+				<subreportParameter name="CUENTA_ID">
+					<subreportParameterExpression><![CDATA[$F{plandecuentas_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["MayorFinal_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="51c5d29c-0f89-4116-91a4-d5227b61004b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="83734a8c-2ab8-470e-b1a8-220b75d6db24"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="1ab8aba0-34f1-4af2-bc13-34b80f813f70"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

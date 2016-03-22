@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MayorFinal_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="582328ed-6921-4a48-a2cd-d5d5e66f758d">
+	<property name="ireport.zoom" value="7.0"/>
+	<property name="ireport.x" value="3045"/>
+	<property name="ireport.y" value="295"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="CUENTA_ID" class="java.lang.Long"/>
+	<parameter name="saldo" class="java.lang.String"/>
+	<parameter name="totalD" class="java.lang.String"/>
+	<parameter name="totalC" class="java.lang.String"/>
+	<parameter name="parameter1" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[$V{variable1}]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     asientocontable."id" AS asientocontable_id,
+     asientocontable."descripcion" AS asientocontable_descripcion,
+     asientocontable."fecha" AS asientocontable_fecha,
+     asientocontable."numerodoc" AS asientocontable_numerodoc,
+     asientocontable."secuencia" AS asientocontable_secuencia,
+     asientocontable."tipodocumento" AS asientocontable_tipodocumento,
+     asientocontable."diario_id" AS asientocontable_diario_id,
+     transaccion."id" AS transaccion_id,
+     transaccion."debe" AS transaccion_debe,
+     transaccion."haber" AS transaccion_haber,
+     transaccion."asientocontable_id" AS transaccion_asientocontable_id,
+     transaccion."cuenta_id" AS transaccion_cuenta_id
+FROM
+     "public"."asientocontable" asientocontable INNER JOIN "public"."transaccion" transaccion ON asientocontable."id" = transaccion."asientocontable_id"
+AND
+      transaccion."cuenta_id"= $P{CUENTA_ID}
+ORDER BY
+      asientocontable."fecha"]]>
+	</queryString>
+	<field name="asientocontable_descripcion" class="java.lang.String"/>
+	<field name="asientocontable_fecha" class="java.sql.Date"/>
+	<field name="asientocontable_numerodoc" class="java.lang.String"/>
+	<field name="asientocontable_secuencia" class="java.lang.String"/>
+	<field name="transaccion_debe" class="java.lang.Double"/>
+	<field name="transaccion_haber" class="java.lang.Double"/>
+	<variable name="totalD" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{transaccion_debe}]]></variableExpression>
+	</variable>
+	<variable name="totalC" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{transaccion_haber}]]></variableExpression>
+	</variable>
+	<variable name="variable1" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{variable1}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="767847e7-d1e9-4946-b9b6-1e2bac299b89"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="54" height="15" forecolor="#000000" uuid="00c1fe77-4f21-407c-b8c5-015e117d4724"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="54" y="19" width="62" height="15" forecolor="#000000" uuid="4aa8b0a0-d112-4e2a-9f9b-360b5e202f61"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Asiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="116" y="19" width="235" height="15" forecolor="#000000" uuid="453a4155-2365-49e0-afa8-da7a05336bab"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="351" y="19" width="51" height="15" forecolor="#000000" uuid="5e581eac-3ee9-45e5-8006-940baca3fc9d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nº doc.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="402" y="19" width="51" height="15" forecolor="#000000" uuid="c95ba4f6-9cfe-44a4-b398-7e42ca8b24a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Débito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="453" y="19" width="51" height="15" forecolor="#000000" uuid="82b65486-ff02-4500-880e-62f3b15ab362"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Crédito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="504" y="19" width="51" height="15" forecolor="#000000" uuid="7cf5476b-832b-4f66-b0f4-10bb1f161c5c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Saldo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="8d16645d-7442-4d87-ae24-3650b38667a5"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement style="Detail" x="0" y="0" width="54" height="15" uuid="0e0759e1-6b2b-4917-b782-6673954177c0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asientocontable_fecha}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Detail" x="54" y="0" width="62" height="15" uuid="2396bf62-778e-4138-acb0-8b822c64c873"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asientocontable_secuencia}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Detail" x="116" y="0" width="235" height="15" uuid="adf402af-0767-444a-863b-a262ca95bb29"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asientocontable_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Detail" x="351" y="0" width="51" height="15" uuid="09b8b401-35d2-43db-b894-8c7445e7fad8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asientocontable_numerodoc}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00" isBlankWhenNull="true">
+				<reportElement style="Detail" x="402" y="0" width="51" height="15" uuid="075b8479-a6d5-45a5-b064-6c7af7c61452"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaccion_debe}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00" isBlankWhenNull="true">
+				<reportElement style="Detail" x="453" y="0" width="51" height="15" uuid="a7f9dfdf-4a79-47c3-9975-162a26d2b567"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transaccion_haber}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="26" splitType="Stretch">
+			<textField pattern="$ #,##0.00">
+				<reportElement x="402" y="0" width="51" height="15" uuid="4dc1e766-1f40-4145-9ca2-98f7d715a596"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalD}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00">
+				<reportElement x="453" y="0" width="51" height="15" uuid="b301a51e-c6b7-459b-ad59-0077bfd436e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalC}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="402" y="0" width="153" height="1" uuid="224ceb64-2cc9-431a-8646-fbe175b378e4"/>
+			</line>
+			<textField pattern="$ #,##0.00">
+				<reportElement x="504" y="0" width="51" height="15" isPrintWhenDetailOverflows="true" uuid="6e6e13c0-8f14-4e96-bcfd-894e5c9b6e2c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalD}-$V{totalC}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
